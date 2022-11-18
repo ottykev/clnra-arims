@@ -21,7 +21,6 @@ public class CboService {
     }
 
     public Cbo add1(Cbo cbo) {
-        cbo.setProvinceCode(UUID.randomUUID().toString());
         return cboRepository.save(cbo);
     }
 

@@ -23,11 +23,20 @@ public class User implements UserDetails {
 
     @Column(name = "last_name")
     private String lastName;
-
     private String email;
     @Column(nullable = true)
-
     private String password;
+
+    @Column(name="gender")
+    private String gender;
+    @Column(name="document_type")
+    private String documentType;
+
+    @Column(name="phone_number")
+    private String phone;
+    @Column(name= "document_number")
+    private String documentNumber;
+
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -40,15 +49,21 @@ public class User implements UserDetails {
     private Collection<Role> roles = new ArrayList<>();
 
 
-
-
-    public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
+    public User(String firstName, String lastName, String email, String password,  String gender, String phone,String documentType,
+                String documentNumber,Collection<Role> roles) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.roles = roles;
+        this.gender = gender;
+        this.phone = phone;
+        this.documentType =documentType;
+        this.documentNumber = documentNumber;
+        //this.profile = profile;
+
+
     }
     public Long getId() {
         return id;
@@ -83,10 +98,46 @@ public class User implements UserDetails {
     public Collection<Role> getRoles() {
         return roles;
     }
+
+
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+
+    public String getDocumentType() {
+        return documentType;
+    }
+
+    public void setDocumentType(String documentType) {
+        this.documentType = documentType;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getDocumentNumber() {
+        return documentNumber;
+    }
+
+    public void setDocumentNumber(String documentNumber) {
+        this.documentNumber = documentNumber;
+    }
+
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
-    
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
